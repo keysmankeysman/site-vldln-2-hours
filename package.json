@@ -1,0 +1,22 @@
+{
+  "name": "site-vldln-2-hours",
+  "version": "1.0.0",
+  "description": "js pure application",
+  "main": "index.js",
+  "scripts": {
+    "serve": "parcel ./src/index.html -p 4200 --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keysmankeysman/site-vldln-2-hours.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/keysmankeysman/site-vldln-2-hours/issues"
+  },
+  "homepage": "https://github.com/keysmankeysman/site-vldln-2-hours#readme",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4"
+  }
+}
