@@ -1,7 +1,13 @@
+import image from './assets/image.png'
+
 export const model = [
     {
         type: 'title',
-        value: 'Hello World from JS'
+        value: 'Конструктор сайтов на чистом JavaScript',
+        options: {
+            tag: 'h2',
+            styles: `background: #eee; color: #fff`
+        }
     },
     {
         type: 'text',
@@ -18,6 +24,6 @@ export const model = [
     },
     {
         type: 'image',
-        value: './assets/image.png'
+        value: image
     }
 ]

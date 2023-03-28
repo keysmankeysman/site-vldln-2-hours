@@ -117,16 +117,24 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"model.js":[function(require,module,exports) {
+})({"assets/image.png":[function(require,module,exports) {
+module.exports = "/image.90ac9039.png";
+},{}],"model.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.model = void 0;
+var _image = _interopRequireDefault(require("./assets/image.png"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 var model = [{
   type: 'title',
-  value: 'Hello World from JS'
+  value: 'Конструктор сайтов на чистом JavaScript',
+  options: {
+    tag: 'h2',
+    styles: "background: #eee; color: #fff"
+  }
 }, {
   type: 'text',
   value: 'here we go with some text'
@@ -135,10 +143,10 @@ var model = [{
   value: ['111111111', '222222222', '333333333', '444444444']
 }, {
   type: 'image',
-  value: './assets/image.png'
+  value: _image.default
 }];
 exports.model = model;
-},{}],"utils.js":[function(require,module,exports) {
+},{"./assets/image.png":"assets/image.png"}],"utils.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -149,7 +157,8 @@ exports.row = row;
 // вспомогательные функции - утилиты
 
 function row(content) {
-  return "<div class=\"row\">".concat(content, "</div>");
+  var styles = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+  return "<div class=\"row\" style=\"".concat(styles, ">").concat(content, "</div>");
 }
 function col(content) {
   return "<div class=\"col-sm\">".concat(content, "</div>");
@@ -163,18 +172,17 @@ Object.defineProperty(exports, "__esModule", {
 exports.templates = void 0;
 var _utils = require("./utils");
 function title(block) {
-  console.log(block);
-  console.log((0, _utils.col)());
-  return (0, _utils.row)((0, _utils.col)("<h1>".concat(block.value, "</h1>")));
+  var _block$options$tag, _block$options$styles;
+  var tag = (_block$options$tag = block.options.tag) !== null && _block$options$tag !== void 0 ? _block$options$tag : 'h1';
+  var styles = (_block$options$styles = block.options.styles) !== null && _block$options$styles !== void 0 ? _block$options$styles : '';
+  return (0, _utils.row)((0, _utils.col)("<".concat(tag, ">").concat(block.value, "</").concat(tag, ">")));
 }
 function text(block) {
   return (0, _utils.row)((0, _utils.col)("<p>".concat(block.value, "</p>")));
 }
 function columns(block) {
-  var html = block.value.map(function (item) {
-    return (0, _utils.col)(item);
-  });
-  return (0, _utils.row)(html.join(''));
+  var html = block.value.map(_utils.col).join('');
+  return (0, _utils.row)(html);
 }
 function image(block) {
   return (0, _utils.row)("<img src=\"".concat(block.value, "\" />"));
