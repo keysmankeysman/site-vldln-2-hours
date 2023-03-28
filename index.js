@@ -15,10 +15,14 @@ const model = [
             '333333333',
             '444444444'
         ]
+    },
+    {
+        type: 'image',
+        value: './assets/image.png'
     }
 ]
 
-const $site = document.querySelector('#site')
+const site = document.querySelector('#site')
 
 model.forEach(block => {
     let html = ''
@@ -28,9 +32,11 @@ model.forEach(block => {
         html = text(block)
     } else if (block.type === 'columns') {
         html = columns(block)
+    } else if (block.type === 'image') {
+        html = image(block)
     }
 
-    $site.insertAdjacentHTML('beforeend', html)
+    site.insertAdjacentHTML('beforeend', html)
 })
 
 function title(block) {
@@ -54,18 +60,18 @@ function text(block) {
 }
 
 function columns(block) {
-    let html = ''
-    block.value.forEach(item => {
-        html += `
-            <div class="col-sm">
-                <p>${item}</p>
-            </div>
-        `
-    })
+    let html = block.value.map(item => `<div class="col-sm">${item}</div>`)
     return `
         <div class="row">
-            ${html}
+            ${html.join('')}
         </div>
-    
+    `
+}
+
+function image(block) {
+    return `
+        <div class="row">
+            <img src="${block.value}" />
+        </div> 
     `
 }
