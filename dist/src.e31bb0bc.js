@@ -125,8 +125,15 @@ module.exports = "/image.90ac9039.png";
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Block = void 0;
+exports.TitleBlock = exports.TextBlock = exports.ImageBlock = exports.ColumnsBlock = void 0;
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
@@ -138,7 +145,46 @@ var Block = /*#__PURE__*/_createClass(function Block(type, value, options) {
   this.value = value;
   this.options = options;
 });
-exports.Block = Block;
+var TitleBlock = /*#__PURE__*/function (_Block) {
+  _inherits(TitleBlock, _Block);
+  var _super = _createSuper(TitleBlock);
+  function TitleBlock(value, options) {
+    _classCallCheck(this, TitleBlock);
+    return _super.call(this, 'title', value, options);
+  }
+  return _createClass(TitleBlock);
+}(Block);
+exports.TitleBlock = TitleBlock;
+var ImageBlock = /*#__PURE__*/function (_Block2) {
+  _inherits(ImageBlock, _Block2);
+  var _super2 = _createSuper(ImageBlock);
+  function ImageBlock(value, options) {
+    _classCallCheck(this, ImageBlock);
+    return _super2.call(this, 'image', value, options);
+  }
+  return _createClass(ImageBlock);
+}(Block);
+exports.ImageBlock = ImageBlock;
+var ColumnsBlock = /*#__PURE__*/function (_Block3) {
+  _inherits(ColumnsBlock, _Block3);
+  var _super3 = _createSuper(ColumnsBlock);
+  function ColumnsBlock(value, options) {
+    _classCallCheck(this, ColumnsBlock);
+    return _super3.call(this, 'columns', value, options);
+  }
+  return _createClass(ColumnsBlock);
+}(Block);
+exports.ColumnsBlock = ColumnsBlock;
+var TextBlock = /*#__PURE__*/function (_Block4) {
+  _inherits(TextBlock, _Block4);
+  var _super4 = _createSuper(TextBlock);
+  function TextBlock(value, options) {
+    _classCallCheck(this, TextBlock);
+    return _super4.call(this, 'text', value, options);
+  }
+  return _createClass(TextBlock);
+}(Block);
+exports.TextBlock = TextBlock;
 },{}],"model.js":[function(require,module,exports) {
 "use strict";
 
@@ -149,21 +195,20 @@ exports.model = void 0;
 var _image = _interopRequireDefault(require("./assets/image.png"));
 var _blocks = require("./classes/blocks");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-console.log(_blocks.Block);
-var model = [new _blocks.Block('title', 'Конструктор сайтов на чистом JavaScript', {
+var model = [new _blocks.TitleBlock('Конструктор сайтов на чистом JavaScript', {
   tag: 'h2',
   styles: {
     background: '#eee',
     color: '#fff',
     'text-align': 'center'
   }
-}), new _blocks.Block('image', _image.default, {
+}), new _blocks.ImageBlock(_image.default, {
   styles: {
     padding: '2rem 0',
     display: 'flex',
     'justify-content': 'center'
   }
-}), new _blocks.Block('text', 'here we go with some text'), new _blocks.Block('columns', ['111111111', '222222222', '333333333', '444444444'])];
+}), new _blocks.TextBlock('here we go with some text'), new _blocks.ColumnsBlock(['111111111', '222222222', '333333333', '444444444'])];
 exports.model = model;
 },{"./assets/image.png":"assets/image.png","./classes/blocks":"classes/blocks.js"}],"utils.js":[function(require,module,exports) {
 "use strict";
