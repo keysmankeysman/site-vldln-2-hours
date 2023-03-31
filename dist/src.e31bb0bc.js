@@ -166,9 +166,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
 function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 var Block = /*#__PURE__*/function () {
-  function Block(type, value, options) {
+  function Block(value, options) {
     _classCallCheck(this, Block);
-    this.type = type;
     this.value = value;
     this.options = options;
   }
@@ -185,7 +184,7 @@ var TitleBlock = /*#__PURE__*/function (_Block) {
   var _super = _createSuper(TitleBlock);
   function TitleBlock(value, options) {
     _classCallCheck(this, TitleBlock);
-    return _super.call(this, 'title', value, options);
+    return _super.call(this, value, options);
   }
   _createClass(TitleBlock, [{
     key: "toHTML",
@@ -205,7 +204,7 @@ var ImageBlock = /*#__PURE__*/function (_Block2) {
   var _super2 = _createSuper(ImageBlock);
   function ImageBlock(value, options) {
     _classCallCheck(this, ImageBlock);
-    return _super2.call(this, 'image', value, options);
+    return _super2.call(this, value, options);
   }
   _createClass(ImageBlock, [{
     key: "toHTML",
@@ -221,7 +220,7 @@ var ColumnsBlock = /*#__PURE__*/function (_Block3) {
   var _super3 = _createSuper(ColumnsBlock);
   function ColumnsBlock(value, options) {
     _classCallCheck(this, ColumnsBlock);
-    return _super3.call(this, 'columns', value, options);
+    return _super3.call(this, value, options);
   }
   _createClass(ColumnsBlock, [{
     key: "toHTML",
@@ -238,7 +237,7 @@ var TextBlock = /*#__PURE__*/function (_Block4) {
   var _super4 = _createSuper(TextBlock);
   function TextBlock(value, options) {
     _classCallCheck(this, TextBlock);
-    return _super4.call(this, 'text', value, options);
+    return _super4.call(this, value, options);
   }
   _createClass(TextBlock, [{
     key: "toHTML",
@@ -274,7 +273,37 @@ var model = [new _blocks.TitleBlock('Конструктор сайтов на ч
   }
 }), new _blocks.TextBlock('here we go with some text'), new _blocks.ColumnsBlock(['111111111', '222222222', '333333333', '444444444'])];
 exports.model = model;
-},{"./assets/image.png":"assets/image.png","./classes/blocks":"classes/blocks.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"./assets/image.png":"assets/image.png","./classes/blocks":"classes/blocks.js"}],"classes/site.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Site = void 0;
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+var Site = /*#__PURE__*/function () {
+  function Site(selector) {
+    _classCallCheck(this, Site);
+    this.$el = document.querySelector(selector);
+  }
+  _createClass(Site, [{
+    key: "render",
+    value: function render(model) {
+      var _this = this;
+      model.forEach(function (block) {
+        _this.$el.insertAdjacentHTML('beforeend', block.toHTML());
+      });
+    }
+  }]);
+  return Site;
+}();
+exports.Site = Site;
+},{}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 function getBundleURLCached() {
   if (!bundleURL) {
@@ -333,15 +362,11 @@ module.hot.accept(reloadCSS);
 "use strict";
 
 var _model = require("./model");
+var _site = require("./classes/site");
 require("./styles/main.css");
-// import { templates } from './templates'
-
-// https://github.com/vladilenm/js-constructor/blob/master/src/model.js
-var site = document.querySelector('#site');
-_model.model.forEach(function (block) {
-  site.insertAdjacentHTML('beforeend', block.toHTML());
-});
-},{"./model":"model.js","./styles/main.css":"styles/main.css"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+var site = new _site.Site('#site');
+site.render(_model.model);
+},{"./model":"model.js","./classes/site":"classes/site.js","./styles/main.css":"styles/main.css"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
