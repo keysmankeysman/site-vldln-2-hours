@@ -157,23 +157,13 @@ var model = [new _blocks.Block('title', 'Конструктор сайтов н�
     color: '#fff',
     'text-align': 'center'
   }
-}), {
-  type: 'image',
-  value: _image.default,
-  options: {
-    styles: {
-      padding: '2rem 0',
-      display: 'flex',
-      'justify-content': 'center'
-    }
+}), new _blocks.Block('image', _image.default, {
+  styles: {
+    padding: '2rem 0',
+    display: 'flex',
+    'justify-content': 'center'
   }
-}, {
-  type: 'text',
-  value: 'here we go with some text'
-}, {
-  type: 'columns',
-  value: ['111111111', '222222222', '333333333', '444444444']
-}];
+}), new _blocks.Block('text', 'here we go with some text'), new _blocks.Block('columns', ['111111111', '222222222', '333333333', '444444444'])];
 exports.model = model;
 },{"./assets/image.png":"assets/image.png","./classes/blocks":"classes/blocks.js"}],"utils.js":[function(require,module,exports) {
 "use strict";
@@ -326,7 +316,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55703" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61382" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

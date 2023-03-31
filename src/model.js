@@ -12,28 +12,20 @@ export const model = [
             'text-align': 'center'
         }  
     }),
-    {
-        type: 'image',
-        value: image,
-        options: {
+    new Block('image', image, {
             styles: {
                 padding: '2rem 0',
                 display: 'flex',
                 'justify-content': 'center'
             } 
         }
-    },
-    {
-        type: 'text',
-        value: 'here we go with some text'
-    },
-    {
-        type: 'columns',
-        value: [
+    ),
+    new Block('text', 'here we go with some text'),
+    new Block('columns', [
             '111111111', 
             '222222222',
             '333333333',
             '444444444'
         ]
-    }
+    )
 ]
