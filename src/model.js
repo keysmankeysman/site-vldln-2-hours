@@ -1,12 +1,26 @@
 import image from './assets/image.png'
+import { Block } from './classes/blocks'
+
+console.log(Block)
 
 export const model = [
+    new Block('title', 'Конструктор сайтов на чистом JavaScript', {
+        tag: 'h2',
+        styles: {
+            background: '#eee', 
+            color: '#fff',
+            'text-align': 'center'
+        }  
+    }),
     {
-        type: 'title',
-        value: 'Конструктор сайтов на чистом JavaScript',
+        type: 'image',
+        value: image,
         options: {
-            tag: 'h2',
-            styles: `background: #eee; color: #fff`
+            styles: {
+                padding: '2rem 0',
+                display: 'flex',
+                'justify-content': 'center'
+            } 
         }
     },
     {
@@ -21,9 +35,5 @@ export const model = [
             '333333333',
             '444444444'
         ]
-    },
-    {
-        type: 'image',
-        value: image
     }
 ]
